@@ -16,11 +16,9 @@ public class QuarkusWebAuthnUserProvider implements WebAuthnUserProvider {
 
     @Override
     public List<WebAuthnUser> findByUsername(String username) {
-        if (username == null || username.isBlank()) {
-            return Collections.emptyList();
-        }
-
         User user = userRepository.findByUsername(username);
+
+        // Se o usuário ainda não existe, criamos um novo na hora do registro
         if (user == null) {
             user = new User();
             user.username = username;
@@ -29,14 +27,21 @@ public class QuarkusWebAuthnUserProvider implements WebAuthnUserProvider {
 
         WebAuthnUser webAuthnUser = new WebAuthnUser();
         webAuthnUser.setUsername(user.username);
+        // Se quiser roles depois:
+        // webAuthnUser.setRoles(Collections.singletonList("user"));
 
         return Collections.singletonList(webAuthnUser);
     }
 
     @Override
     public List<WebAuthnUser> findByCredentialId(String credentialId) {
-        // Implementação mínima: ainda não fazemos lookup por credentialId.
-        // Quarkus consegue operar com o mecanismo padrão mesmo assim.
-        return Collections.emptyList();
+        User user = userRepository.findByCredentialId(credentialId);
+        if (user == null) {
+            return Collections.emptyList();
+        }
+
+        WebAuthnUser webAuthnUser = new WebAuthnUser();
+        webAuthnUser.setUsername(user.username);
+        return Collections.singletonList(webAuthnUser);
     }
 }
