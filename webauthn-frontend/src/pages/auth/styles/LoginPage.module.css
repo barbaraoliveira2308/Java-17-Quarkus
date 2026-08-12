@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  justify-content: center;
+  padding: 32px 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+}
+
+.form {
+  margin-top: 16px;
+}
