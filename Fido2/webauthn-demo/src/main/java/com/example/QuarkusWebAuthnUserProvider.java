@@ -1,5 +1,4 @@
 package com.example;
-
 import io.quarkus.security.webauthn.WebAuthnUser;
 import io.quarkus.security.webauthn.WebAuthnUserProvider;
 import jakarta.enterprise.context.ApplicationScoped;
