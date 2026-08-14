@@ -1,0 +1,26 @@
+@"
+# Dependencias Node em qualquer subprojeto
+node_modules/
+
+# Builds JavaScript
+dist/
+build/
+
+# Build Maven/Quarkus
+target/
+
+# Variaveis de ambiente
+.env
+.env.*
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+"@ | Set-Content .gitignore
